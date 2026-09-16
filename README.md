@@ -2,7 +2,8 @@
 
 <img src="docs/assets/logo.png" alt="VidGen Logo" width="320" style="border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
 
-**Full-Stack Open-Source AI Video & Image Generation Platform**
+# 🎬 VidGen
+**Out-of-the-box, High-Performance Full-Stack Open-Source AI Video & Image Generation Platform**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
@@ -16,322 +17,169 @@
 
 <p align="center">
   <a href="https://vidgenerator.ai"><b>🚀 Live Demo</b></a> •
+  <a href="#-1-minute-quick-start-docker"><b>⚡ Quick Start</b></a> •
   <a href="#-key-features"><b>✨ Features</b></a> •
-  <a href="#️-tech-stack"><b>🛠️ Tech Stack</b></a> •
-  <a href="#-quick-start"><b>⚡ Quick Start</b></a> •
-  <a href="#-repository-structure"><b>📁 Architecture</b></a>
+  <a href="#️-connect-real-ai--payments"><b>⚙️ Integrations</b></a> •
+  <a href="#-documentation"><b>📚 Docs</b></a>
 </p>
 
 ---
 
-> 🚀 **Live Demo & Battle-Tested**: VidGen powers [vidgenerator.ai](https://vidgenerator.ai) in production.
+> 🚀 **Battle-Tested in Production**: VidGen powers the commercial platform [vidgenerator.ai](https://vidgenerator.ai).
 
-## 🌟 Overview
+## 🌟 What is VidGen?
 
-**VidGen** is a modern, high-performance, open-source AI Video and Image Generation platform designed for creators, developers, and entrepreneurs. Built on a clean monorepo architecture, VidGen seamlessly combines a fast SSR Nuxt 3 user portal, a bilingual Nuxt 3 admin panel, and an asynchronous Python FastAPI backend powered by Celery task queues.
+**VidGen** is an open-source, production-ready AI video and image generation platform designed for creators, indie hackers, and entrepreneurs.
 
-Whether you are launching an AI image/video generation platform or building custom workflow pipelines, VidGen provides a complete, battle-tested foundation with built-in credit monetization, community sharing, SEO optimization, and content moderation.
+Whether you want to launch a full-featured Midjourney / Luma alternative in **5 minutes** or build a custom AI monetization business, VidGen provides a **complete end-to-end solution**: from a modern SSR Nuxt 3 frontend portal, bilingual admin dashboard, and Celery async generation engine, to **credit economics, payment gateways, prompt community, virtual user generators, and content moderation**.
+
+---
+
+## ⚡ 1-Minute Quick Start (Docker)
+
+No need to install Python/Node.js, configure databases, or **even apply for paid API keys** (built-in Mock generation mode and demo data for zero-cost local testing). Run the entire stack with a single command!
+
+### 1. Clone and Launch
+
+```bash
+# 1. Clone repository
+git clone https://github.com/ucmao/vidgen.git
+cd vidgen
+
+# 2. Launch all 6 services with Docker Compose (Web, Admin, FastAPI, Celery, Postgres, Redis)
+docker compose up -d
+```
+
+### 2. Access Services
+
+Once started, open your browser:
+
+| Service | URL | Default Credentials / Note |
+| :--- | :--- | :--- |
+| 🌐 **User Web Portal** | `http://localhost:3000` | Preloaded with demo data & Mock AI engine for instant testing |
+| 🔧 **Admin Panel** | `http://localhost:3001` | Username: `admin` (check terminal logs for the generated password, or set `INITIAL_ADMIN_PASSWORD`) |
+| 🐍 **Interactive API Docs** | `http://localhost:8000/docs` | Swagger UI documentation & testing |
+
+> 💡 **Quick Tips**:
+> - View real-time startup logs: `docker compose logs -f backend`.
+> - On initial container launch, database migrations and demo seed data are automatically applied.
 
 ---
 
 ## ✨ Key Features
 
 ### 🎨 Multi-Modal AI Generation
-- **Text-to-Image (Text2Img)**: Generate high-resolution images using state-of-the-art models (FLUX.1, SDXL, Midjourney).
-- **Image-to-Image (Img2Img)**: Transform existing images with custom prompt guidance and strength parameters.
-- **Text-to-Video (Text2Video)**: Create dynamic AI video clips from text prompts (HunyuanVideo, Luma, Pika, Runway).
-- **Image-to-Video (Img2Video)**: Animate static photos into high-definition videos with motion control.
+- **Text-to-Image (Text2Img)**: Generate high-resolution visuals via FLUX.1, SDXL, Midjourney, and more.
+- **Image-to-Image (Img2Img)**: Image-guided synthesis with prompt tuning and strength control.
+- **Text-to-Video (Text2Video)**: Turn prompts into dynamic AI video clips (HunyuanVideo, Luma, Pika, Runway).
+- **Image-to-Video (Img2Video)**: Animate still photos into high-definition videos with motion control.
 
-### 🤖 Multi-Provider Workflow Engine
-- **Flexible AI Integration**: Built-in support for Replicate, Gemini API, and custom provider pipelines.
-- **Node-Based Workflow Executor**: Execute complex multi-step generation workflows (`backend/app/services/workflow_executor.py`).
-- **Asynchronous Task Queue**: Celery task processor for heavy generation jobs, preventing API thread blocking.
-- **Job Updates**: Authenticated native WebSocket notifications with polling fallback for background-worker jobs.
+### 💰 Monetization & Credit Economics
+- **Global Payments**: Native integration with **PayPal** and **Stripe** for subscriptions and credit top-ups.
+- **Granular Credit Pricing**: Set custom credit deductions per model, resolution, and step.
+- **Growth & Marketing**: Promo codes, discount campaigns, and tiered daily check-in streak rewards.
 
-### 💰 Monetization & Credit System
-- **Payment Gateways**: Integrated with **PayPal** and **Stripe** for seamless global subscriptions and credit package purchases.
-- **Credit Economics**: Pay-as-you-go credit deduction for model runs with customizable pricing per model option.
-- **Discount & Promo Engine**: Support for discount offers, promo codes, and special sales packages.
-- **Daily Check-in Rewards**: Interactive daily check-in feature with streak multipliers and bonus credits.
+### 🔧 Powerful Bilingual Admin Panel
+- **1-Click Bilingual Toggle**: Switch seamlessly between English and Simplified Chinese (`English` / `中文`).
+- **Sockpuppet / Virtual User Generator**: Generate realistic synthetic user accounts & avatars to jumpstart community engagement.
+- **Content Moderation**: Automated NSFW filtering, sensitive word blocklist, report handling, and user ban tools.
+- **Dynamic Pricing Manager**: Modify model status, pricing, and multipliers on the fly without redeploying.
 
-### 🌐 Prompt Community & Social Features
-- **Explore Gallery**: Masonry layout showcasing community creations, prompts, models used, and generation parameters.
-- **Creator Profiles**: Custom user handles (`@username`), bios, avatars, and personal work showcases.
-- **Social Engagement**: Like, favorite, comment on works, and follow creators.
-- **SEO & Aggregation Pages**: Dynamic SEO metadata, sitemap generator, topic aggregation pages (`/topic/...`), category pages (`/category/...`), and effect pages (`/effects/...`).
+### 🌐 Creator Community & Social Ecosystem
+- **Explore Gallery**: Responsive masonry layout with 1-click prompt copying and parameter inspection.
+- **Creator Profiles**: Custom handles (`@username`), bios, avatars, and personal work showcases.
+- **Social Engagement**: Likes, favorites, comments, and creator follows.
+- **SEO Ready**: Auto-generated sitemaps, category aggregation (`/category/...`), and effect pages (`/effects/...`).
 
-### 🔧 Feature-Rich Admin Panel
-- **Bilingual i18n Support**: 100% English UI by default with 1-click Chinese language toggle (`English` / `中文`).
-- **Sockpuppet / Virtual User Generator**: Generate realistic synthetic user accounts using `faker` & automatic Cloudflare R2 avatar fetching.
-- **Content Moderation**: Automated NSFW image filter, sensitive keyword lexicon manager, user report handling, and work banning.
-- **Model & Pricing Management**: Configure AI models, base credit costs, option multipliers, and workflow templates without redeploying.
-- **Operational Management**: Banner & carousel slider manager, blog post editor, and system configuration.
+### ⚡ High-Performance Async Architecture
+- **Celery Task Queues**: Heavy AI generation jobs run completely asynchronously without blocking API threads.
+- **Real-Time WebSocket**: Instant job completion pushes directly to the frontend.
+
+---
+
+## ⚙️ Connect Real AI & Payments (Next Steps)
+
+Ready to move from local testing to real AI generation? Simply fill in your API keys in `backend/.env` (or Docker environment variables):
+
+```env
+# 1. Real AI Providers (Setting a key automatically disables Mock mode)
+REPLICATE_API_KEY="r8_your_replicate_api_key_here"
+# GEMINI_API_KEY="your_gemini_api_key_here"
+
+# 2. Payment Gateways (PayPal / Stripe)
+PAYPAL_CLIENT_ID="your_paypal_client_id"
+PAYPAL_CLIENT_SECRET="your_paypal_client_secret"
+# STRIPE_SECRET_KEY="sk_live_..."
+
+# 3. SMTP Email (For verification codes)
+SMTP_HOST="smtp.example.com"
+SMTP_PORT="465"
+SMTP_USER="noreply@example.com"
+SMTP_PASSWORD="your_smtp_password"
+
+# 4. Google OAuth Login (Optional)
+GOOGLE_CLIENT_ID="your_google_client_id"
+GOOGLE_CLIENT_SECRET="your_google_client_secret"
+```
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technologies |
+| Component | Technologies |
 | :--- | :--- |
-| **Frontend Web** | **Nuxt 3.21.11** (Vue 3, SSR/ISR), **Pinia**, **Tailwind CSS**, **Lucide Icons**, Axios, native WebSocket |
-| **Admin Panel** | **Nuxt 3.21.11** (Vue 3), **Tailwind CSS**, custom i18n (EN/ZH), Axios |
-| **Backend API** | **FastAPI 0.141.1** (Python 3.11+), **SQLAlchemy 2.0.25** (synchronous ORM), **Pydantic 2.12.5**, JWT |
-| **Task Queue & Workers** | **Celery 5.4+**, **Flower 2.0+** (Monitoring), **Redis 7** (Broker & Cache) |
-| **Database** | **PostgreSQL 15+** with **Alembic** database migration tracking |
-| **Storage & CDN** | **Cloudflare R2** / AWS S3 / Aliyun OSS (S3-compatible object storage) |
-| **AI Providers** | Replicate, Google Gemini, Custom Provider Adapters |
-| **Payments** | PayPal SDK, Stripe API |
-| **Containerization** | **Docker**, **Docker Compose** (One-click stack orchestration) |
-| **Service Management** | Unified **systemd** service suite (`systemd/`), Nginx Reverse Proxy |
+| **Frontend Web** | **Nuxt 3.21.11** (Vue 3, SSR/ISR) + **Tailwind CSS** + **Pinia** + **Lucide Icons** |
+| **Admin Panel** | **Nuxt 3.21.11** (Vue 3) + **Tailwind CSS** + Custom Bilingual i18n (EN/ZH) |
+| **Backend API** | **FastAPI 0.141.1** (Python 3.11+) + **SQLAlchemy 2.0** + **Pydantic 2** |
+| **Task Queue & Cache** | **Celery 5.4+** + **Redis 7** (Broker & Cache) + **Flower** (Queue Monitor) |
+| **Database** | **PostgreSQL 15+** + **Alembic** Migrations |
+| **Storage & CDN** | **Cloudflare R2** / AWS S3 / Aliyun OSS (S3-Compatible Object Storage) |
+| **Deployment** | **Docker Compose** / **systemd** Automation Scripts / Nginx Reverse Proxy |
 
 ---
 
-## 📁 Repository Structure
+## 📚 Documentation
 
-```
-vidgen/
-├── web/                     # 🌐 Frontend Web Application (Nuxt 3, Port 3000)
-│   ├── pages/               # Page routes (explore, generate, profile, recharge, etc.)
-│   ├── components/          # Reusable UI components
-│   ├── composables/         # Custom composable hooks
-│   ├── stores/              # Pinia state management stores
-│   └── nuxt.config.ts       # Nuxt 3 configuration
-│
-├── admin/                   # 🔧 Admin Management Panel (Nuxt 3, Port 3001)
-│   ├── pages/               # Admin routes (users, works, moderation, models, etc.)
-│   ├── composables/         # Admin API & i18n composables (useAdminI18n.ts)
-│   ├── locales/             # Bilingual UI dictionaries (en.ts, zh.ts)
-│   └── nuxt.config.ts
-│
-├── backend/                 # 🐍 Backend API & Async Engine (FastAPI, Port 8000)
-│   ├── app/
-│   │   ├── main.py          # FastAPI app entry point & routes registration
-│   │   ├── celery_app.py    # Celery task queue configuration
-│   │   ├── routes/          # API route handlers (auth, works, generation, admin*.py)
-│   │   ├── models/          # SQLAlchemy database models
-│   │   ├── services/        # Storage, Email, Gemini, Moderation, Payment services
-│   │   ├── tasks/           # Asynchronous Celery workflow tasks
-│   │   └── utils/           # i18n, Logger, Auth, Slug, Validation utilities
-│   ├── migrations/          # Alembic database migration scripts
-│   ├── scripts/             # System initialization & maintenance CLI tools
-│   └── requirements.txt     # Python dependencies
-│
-├── systemd/                 # ⚙️ Unified Service Management & Deployment Scripts
-│   ├── deploy.sh            # Automated deployment script
-│   ├── manage-services.sh   # Interactive systemd service manager
-│   └── *.service            # Service unit configuration files
-│
-└── docs/                    # 📚 Technical Documentation & Guides
-    ├── 01-getting-started/  # Environment & local setup guides
-    ├── 02-architecture/     # System architecture & workflow engine
-    ├── 03-subsystems/        # Backend, frontend & database schemas
-    ├── 04-integrations/     # Payments, R2 storage & AI provider adapters
-    ├── 05-deployment/       # Docker, systemd & production guides
-    └── 06-governance/       # Security, contributing & code of conduct
-```
+For manual development setup, architectural deep-dives, or production deployment guides, check out the documentation library:
+
+- 🚀 **Getting Started**:
+  - [Local Development Setup](docs/01-getting-started/local-development.md)
+  - [Environment Variables Checklist](docs/01-getting-started/environment-variables.md)
+- 🏗️ **Architecture & Systems**:
+  - [System Architecture Overview](docs/02-architecture/system-overview.md)
+  - [Workflow Engine & Node Execution](docs/02-architecture/workflow-engine.md)
+  - [Credit Economics & Pricing Model](docs/02-architecture/credit-economics.md)
+  - [Database Schema Dictionary](docs/03-subsystems/database-schema.md)
+- 🔌 **Integrations**:
+  - [Payment Gateways Integration (PayPal & Stripe)](docs/04-integrations/payment-gateways.md)
+  - [Cloudflare R2 Storage Setup](docs/04-integrations/object-storage.md)
+  - [AI Model Provider Extension Guide](docs/04-integrations/provider-extension-guide.md)
+- 🚢 **Production Deployment**:
+  - [Production Docker Guidelines](docs/05-deployment/docker-deployment.md)
+  - [Linux systemd Deployment Guide](docs/05-deployment/production-deployment.md)
 
 ---
 
-## ⚡ Quick Start
+## 🔐 Production Docker Deployment
 
-### 🐳 Option 1: One-Click Docker Compose (Recommended)
-
-Run the entire VidGen stack (Web, Admin, Backend, Celery, Postgres, Redis) with a single command:
+To deploy VidGen in production, use `docker-compose.prod.yml` with a private `.env.production` configuration:
 
 ```bash
-# Clone repository
-git clone https://github.com/ucmao/vidgen.git
-cd vidgen
-
-# Launch all 6 services via Docker Compose
-docker compose up -d
-```
-> 💡 *Tip: Omit `-d` or run `docker compose logs -f backend` to stream live startup logs & external API checklist.*
-
-- 🌐 **Web User Portal**: `http://localhost:3000`
-- 🔧 **Admin Panel**: `http://localhost:3001` (user: `admin`; the first startup log prints a generated local password unless `INITIAL_ADMIN_PASSWORD` is set)
-- 🐍 **Backend API (Swagger Docs)**: `http://localhost:8000/docs`
-
-> 💡 **Local initialization**: On container startup, `scripts/seed_all.py` applies migrations, creates the superadmin, and imports the safe seed profile: reviewed runtime configuration plus neutral demo content using bundled local media. The development stack binds published ports to `127.0.0.1` and must not be exposed directly to the internet.
-
-> [!IMPORTANT]
-> **External Integrations & API Keys Checklist**:  
-> Running Docker spins up full local infrastructure, database schemas, frontend/admin panels, and demo datasets out of the box. To activate real external third-party services, configure your `backend/.env`:
-> - **AI Generation**: Fill `REPLICATE_API_KEY` (or keep `MOCK_AI_GENERATION=true` for zero-cost testing).
-> - **Payments**: Fill `PAYPAL_CLIENT_ID` / `PAYPAL_CLIENT_SECRET`.
-> - **Email Verification**: Fill `SMTP_HOST` / `SMTP_PORT`. For local testing without SMTP, explicitly start Compose with `RETURN_VERIFICATION_CODES=true`; this flag is ignored in production.
-> - **OAuth Login**: Fill `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`.
-
----
-
-### 🔐 Production Docker baseline
-
-Do not deploy the development Compose file publicly. The production baseline requires strong credentials, disables verification-code responses, skips demo-data import, and binds application ports to loopback for a TLS reverse proxy:
-
-```bash
-# Save these and other integration credentials in a private .env.production file.
-POSTGRES_PASSWORD='replace-with-a-strong-database-password'
-JWT_SECRET='replace-with-at-least-32-random-characters'
-CONFIG_ENCRYPTION_KEY='replace-with-an-independent-random-secret'
-INITIAL_ADMIN_EMAIL='admin@example.com'
-INITIAL_ADMIN_PASSWORD='replace-with-a-strong-admin-password'
-BACKEND_URL='https://api.example.com'
-FRONTEND_URL='https://example.com'
-ADMIN_FRONTEND_URL='https://admin.example.com'
-WEBSOCKET_URL='wss://api.example.com'
-
+# Generate strong secrets and credentials in .env.production, then run:
 docker compose --env-file .env.production -f docker-compose.prod.yml up -d
 ```
-
-Terminate HTTPS at a reverse proxy and keep backend ports unreachable from untrusted networks. Redis is mandatory for production rate limiting.
-
----
-
-### 🛠️ Option 2: Manual Local Setup
-
-#### Prerequisites
-- **Python**: 3.11 or higher
-- **Node.js**: 24.15 or higher
-- **PostgreSQL**: 15.x or higher
-- **Redis**: 7.x or higher
-
----
-
-### 1. Backend Setup
-
-```bash
-# Navigate to backend directory
-cd backend
-
-# Create and activate Python virtual environment
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Create configuration from template
-cp .env.example .env
-# Edit backend/.env to configure DATABASE_URL, REDIS_URL, R2 credentials, API keys
-```
-
-#### Initialize Database & Seed Data
-
-```bash
-# Optional: configure the initial admin (a random local password is generated otherwise)
-export INITIAL_ADMIN_USERNAME=admin
-export INITIAL_ADMIN_PASSWORD=replace-with-a-secure-password
-
-# Apply migrations, create the admin, and import the safe local demo dataset
-python scripts/seed_all.py
-```
-
-The command is safe to run repeatedly. A failed migration or initialization step exits with a non-zero status instead of continuing with a partial setup.
-
-> 💡 **Tip**: Running `python scripts/seed_all.py` safely applies migrations, creates the initial admin, and seeds safe demo content. For detailed dataset seeding options, refer to [docs/01-getting-started/quickstart.md](docs/01-getting-started/quickstart.md).
-
-#### Run FastAPI Development Server
-
-```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
-- **API Docs (Swagger UI)**: `http://localhost:8000/docs`
-
----
-
-### 2. Celery Worker Setup (Asynchronous Tasks)
-
-```bash
-cd backend
-source venv/bin/activate
-
-# Start Celery worker for image & video generation tasks
-celery -A app.celery_app worker --loglevel=info -c 4
-```
-
----
-
-### 3. Frontend Web Setup (Port 3000)
-
-```bash
-cd web
-
-# Install dependencies
-npm install
-
-# Create configuration from template
-cp .env.example .env
-# Edit web/.env to point NUXT_PUBLIC_API_BASE_URL to http://localhost:8000
-
-# Start Nuxt 3 development server
-npm run dev
-```
-- **Web App**: `http://localhost:3000`
-
----
-
-### 4. Admin Panel Setup (Port 3001)
-
-```bash
-cd admin
-
-# Install dependencies
-npm install
-
-# Start Admin Panel development server
-npm run dev
-```
-- **Admin Panel**: `http://localhost:3001`
-- **Default Credentials**: Created via `python scripts/create_first_admin.py`
-
----
-
-## 🚢 Service Management & Production Deployment
-
-VidGen includes a production-ready **systemd unified service manager** located in `systemd/`:
-
-```bash
-# Run interactive service manager
-chmod +x systemd/manage-services.sh
-./systemd/manage-services.sh
-```
-
-Available service commands:
-- **`manage-services.sh status`**: View real-time status of Web, Admin, Backend API, and Celery Workers.
-- **`manage-services.sh start`**: Start all services simultaneously.
-- **`manage-services.sh restart`**: Gracefully restart all services.
-- **`deploy.sh`**: One-click automated production deployment script.
-
-For detailed Nginx and aaPanel deployment instructions, refer to [docs/05-deployment/production-deployment.md](docs/05-deployment/production-deployment.md).
-
----
-
-## 🛠️ CLI Maintenance Tools
-
-The `backend/scripts/` folder provides utility scripts for administrative maintenance:
-
-```bash
-# Add credits to a user account
-python scripts/add_credits.py --email user@example.com --amount 1000
-
-# Reapply the canonical configuration and demo dataset
-python scripts/seed_all.py
-
-# Backfill work tags and slugs
-python scripts/update_url_slugs_from_titles.py
-```
+> For complete production security baselines and TLS setup, see [Production Deployment Docs](docs/05-deployment/production-deployment.md).
 
 ---
 
 ## 📄 License
 
-This project is open-source under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](LICENSE) — free for both personal and commercial use.
 
 ---
 
 ## 🤝 Contributing & Community
 
-Contributions, issues, and feature requests are welcome!  
-Feel free to open an Issue or submit a Pull Request.
-
-*If you find VidGen helpful, please give us a ⭐️ Star on GitHub!*
+- Submit an [Issue](https://github.com/ucmao/vidgen/issues) to report bugs or request features.
+- Pull Requests are always welcome!
+- If VidGen helps you, please consider giving us a ⭐️ **Star** on GitHub!

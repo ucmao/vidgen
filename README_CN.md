@@ -2,7 +2,8 @@
 
 <img src="docs/assets/logo.png" alt="VidGen Logo" width="320" style="border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
 
-**全栈开源 AI 视频与图像生成平台**
+# 🎬 VidGen
+**开箱即用、高性能的全栈开源 AI 视频与图像生成平台**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
@@ -16,320 +17,169 @@
 
 <p align="center">
   <a href="https://vidgenerator.ai"><b>🚀 在线演示</b></a> •
-  <a href="#-核心功能亮点"><b>✨ 核心功能</b></a> •
-  <a href="#-技术栈一览"><b>🛠️ 技术栈</b></a> •
-  <a href="#-快速启动指南"><b>⚡ 快速开始</b></a> •
-  <a href="#-目录结构"><b>📁 目录结构</b></a>
+  <a href="#-1-分钟极速上手-docker"><b>⚡ 极速体验</b></a> •
+  <a href="#-核心特性"><b>✨ 核心特性</b></a> •
+  <a href="#️-接入真实-ai-与支付"><b>⚙️ 商业化配置</b></a> •
+  <a href="#-完整文档"><b>📚 开发文档</b></a>
 </p>
 
 ---
 
-> 🚀 **在线商业化验证（Battle-Tested）**：VidGen 为真实线上运营项目 [vidgenerator.ai](https://vidgenerator.ai) 提供核心系统支持。
+> 🚀 **真实生产验证（Battle-Tested）**：VidGen 为真实线上商业运营项目 [vidgenerator.ai](https://vidgenerator.ai) 提供核心系统支持。
 
-## 🌟 项目简介
+## 🌟 什么是 VidGen？
 
-**VidGen** 是一款面向创作者、开发者与创业者的高性能开源 AI 视频与图像生成平台。项目基于清晰的 Monorepo 单体多应用架构设计，完美融合了 Nuxt 3 高并发 SSR 前端门户、中英文双语 Nuxt 3 管理后台以及基于 Celery 异步任务队列的 Python FastAPI 后端。
+**VidGen** 是一套专为创作者、独立开发者和创业者打造的开源 AI 视频与图像生成系统。
 
-无论您是打算上线商业化 AI 图片/视频生成平台，还是构建自定义 AI 工作流，VidGen 均提供了包含积分充值变现、社区分享、SEO 深度优化、内容安全审核等开箱即用的生产级完整解决方案。
+无论你是想在 **5 分钟内**自建一个类似 Midjourney / Luma 的 AI 生成网站，还是打造专属的 AI 商业化产品，VidGen 都能提供**全链路闭环解决方案**：从现代化 Nuxt 3 用户门户、中英双语管理后台、Celery 异步生成引擎，到**积分变现、在线支付、社区广场、虚拟马甲与内容审核**，全部开箱即用！
 
 ---
 
-## ✨ 核心功能亮点
+## ⚡ 1 分钟极速上手 (Docker)
 
-### 🎨 多模态 AI 生成引擎
-- **文生图 (Text-to-Image)**：支持 FLUX.1、SDXL、Midjourney 等先进模型，一键生成超高清图像。
-- **图生图 (Image-to-Image)**：上传参考图结合 Prompt 引导词与相似度控制，实现图像重绘与风格转换。
+无需配置复杂的 Python/Node 环境，无需搭建数据库，甚至**无需申请任何付费 API Key**（默认开启 Mock 模式与演示数据，0 成本本地试玩），一条命令即可完整启动！
+
+### 1. 克隆并启动
+
+```bash
+# 1. 克隆项目
+git clone https://github.com/ucmao/vidgen.git
+cd vidgen
+
+# 2. 一键启动全套 6 个服务 (Web 前端、Admin 后台、FastAPI、Celery 队列、PostgreSQL、Redis)
+docker compose up -d
+```
+
+### 2. 立即访问
+
+服务启动后，在浏览器中打开即可直接使用：
+
+| 服务 | 访问地址 | 默认账号 / 说明 |
+| :--- | :--- | :--- |
+| 🌐 **用户端前台** | `http://localhost:3000` | 已预装演示数据与 Mock 生成引擎，直接体验 |
+| 🔧 **管理后台 (Admin)** | `http://localhost:3001` | 用户名：`admin`（密码见首次启动终端日志，或配置 `INITIAL_ADMIN_PASSWORD`） |
+| 🐍 **API 交互文档** | `http://localhost:8000/docs` | Swagger 交互式接口文档与调试 |
+
+> 💡 **小白贴士**：
+> - 想要查看运行状态与实时日志？运行 `docker compose logs -f backend`。
+> - 容器首次启动会自动执行数据迁移并生成演示数据，开箱即可体验全部前后台功能。
+
+---
+
+## ✨ 核心特性
+
+### 🎨 多模态 AI 生成
+- **文生图 (Text-to-Image)**：支持 FLUX.1、SDXL、Midjourney 等先进模型，一键生成高清图片。
+- **图生图 (Image-to-Image)**：支持参考图垫图与 Prompt 引导，实现风格重绘与细节微调。
 - **文生视频 (Text-to-Video)**：支持 HunyuanVideo、Luma、Pika、Runway 等动态视频生成。
-- **图生视频 (Image-to-Video)**：将静态照片一键转化为高帧率动态视频，支持运动幅度微调。
+- **图生视频 (Image-to-Video)**：让静态照片动起来，支持运动幅度与画面动态调节。
 
-### 🤖 多厂商工作流与异步队列
-- **多厂商 API 适配**：内置 Replicate、Gemini API 以及自定义 Provider 拓展机制。
-- **节点化工作流引擎**：支持复杂多步骤 AI 工作流的编排与执行 (`backend/app/services/workflow_executor.py`)。
-- **Celery 异步任务队列**：耗时视频/大图生成任务完全解耦异步化，防止阻塞 API 响应线程。
-- **任务状态更新**：使用经过鉴权的原生 WebSocket 推送，并为后台 Worker 任务保留轮询兜底。
+### 💰 商业化与支付闭环
+- **全球主流支付**：原生集成 **PayPal** 与 **Stripe** 支付网关，支持订阅与积分充值。
+- **按量积分计费**：支持为不同模型、清晰度、步骤灵活配置积分消耗。
+- **运营促销体系**：支持折扣优惠券、限时促销包、每日签到阶梯奖励。
 
-### 💰 商业化积分与支付变现
-- **全球主流支付集成**：原生集成 **PayPal** 与 **Stripe** 支付网关，支持全球化订阅与积分套餐购买。
-- **按量积分扣减**：支持针对不同模型、参数选项动态设定积分消耗。
-- **折扣与促销引擎**：支持活动横幅、充值折扣优惠卷、促销套餐配置。
-- **每日签到奖励系统**：支持连续签到阶梯奖励与倍率加成 (`CHECKIN_FEATURE.md`)。
+### 🔧 强大的中英文管理后台
+- **双语极速切换**：纯英文/中文界面顶栏一键切换 (`English` / `中文`)。
+- **马甲账号生成器**：一键批量生成高真实感虚拟用户与作品，快速冷启动社区。
+- **内容安全审核**：集成敏感词库、NSFW 智能检测、用户举报处理与一键封禁。
+- **可视化模型定价**：后台直接管理模型状态、基础价格与加价规则，无需重启服务。
 
 ### 🌐 社区广场与社交生态
-- **探索画廊**：瀑布流展示社区优秀作品，公开 Prompt 提示词、生成参数与使用模型。
-- **创作者主页**：支持自定义 Handle 域名 (`@username`)、个人简介、头像与个人作品集展示。
-- **社交互动**：点赞、收藏、作品评论与创作者关注系统。
-- **SEO 深度优化**：动态 Meta 标签、自动 Sitemap 生成、专题聚合页 (`/topic/...`)、分类页 (`/category/...`) 与特效页 (`/effects/...`)。
+- **探索画廊**：瀑布流作品展示，一键复制 Prompt 提示词与模型参数。
+- **创作者主页**：自定义个人主页、Handle 域名 (`@username`)、头像与作品集。
+- **社交互动**：支持点赞、收藏、作品评论与关注作者。
+- **深度 SEO**：自动生成 Sitemap、分类聚合页 (`/category/...`)、特效聚合页 (`/effects/...`)。
 
-### 🔧 功能强大的管理后台 (Admin)
-- **中英文双语支持**：首次安装默认纯英文，支持顶栏一键切换中文/英文 (`English` / `中文`)。
-- **马甲账号虚拟生成器**：基于 `faker` 库与 Cloudflare R2 头像抓取，一键批量生成高真实感虚拟用户。
-- **内容安全审核系统**：自动 NSFW 违规图像识别、敏感词库过滤、用户举报处理与一键封禁。
-- **模型与定价管理**：可视化配置 AI 模型状态、基础积分、参数加价与工作流模板。
-- **运营工具**：首页 Banner 与轮播图管理、博客文章编辑器与全站配置。
+### ⚡ 高性能异步架构
+- **Celery 异步任务队列**：图片/视频渲染完全解耦异步化，高并发下依然丝滑流畅。
+- **WebSocket 实时推送**：任务完成后秒级推送通知前端，体验极佳。
+
+---
+
+## ⚙️ 接入真实 AI 与支付（进阶配置）
+
+当你想从“本地试玩”转为“真实使用”时，只需在 `backend/.env`（或 Docker 环境变量）中填入对应 Key 即可：
+
+```env
+# 1. 接入真实 AI 服务商（填入后将自动关闭 Mock 模式）
+REPLICATE_API_KEY="r8_your_replicate_api_key_here"
+# GEMINI_API_KEY="your_gemini_api_key_here"
+
+# 2. 接入支付（支持 PayPal / Stripe）
+PAYPAL_CLIENT_ID="your_paypal_client_id"
+PAYPAL_CLIENT_SECRET="your_paypal_client_secret"
+# STRIPE_SECRET_KEY="sk_live_..."
+
+# 3. 邮件服务（用于用户注册邮箱验证码）
+SMTP_HOST="smtp.example.com"
+SMTP_PORT="465"
+SMTP_USER="noreply@example.com"
+SMTP_PASSWORD="your_smtp_password"
+
+# 4. Google 一键快捷登录（可选）
+GOOGLE_CLIENT_ID="your_google_client_id"
+GOOGLE_CLIENT_SECRET="your_google_client_secret"
+```
 
 ---
 
 ## 🛠️ 技术栈一览
 
-| 架构层级 | 技术选型 |
+| 模块 | 核心技术选型 |
 | :--- | :--- |
-| **前台 Web** | **Nuxt 3.21.11** (Vue 3, SSR/ISR), **Pinia**, **Tailwind CSS**, **Lucide Icons**, Axios, 原生 WebSocket |
-| **管理后台 Admin** | **Nuxt 3.21.11** (Vue 3), **Tailwind CSS**, 自定义 i18n（中英双语）, Axios |
-| **后端 API** | **FastAPI 0.141.1** (Python 3.11+), **SQLAlchemy 2.0.25**（同步 ORM）, **Pydantic 2.12.5**, JWT |
-| **任务队列与监控** | **Celery 5.4+**, **Flower 2.0+** (队列监控), **Redis 7** (Broker & 缓存) |
-| **数据库** | **PostgreSQL 15+**, **Alembic** 版本迁移工具 |
-| **存储与 CDN** | **Cloudflare R2** / AWS S3 / 阿里云 OSS (兼容 S3 协议) |
-| **AI 服务商** | Replicate, Google Gemini, 自定义 Adapter |
-| **支付网关** | PayPal SDK, Stripe API |
-| **容器化编排** | **Docker**, **Docker Compose** (一键全栈容器编排) |
-| **运维与部署** | 统一 **systemd** 服务管理器 (`systemd/`), Nginx 反向代理 |
+| **前端 Web 门户** | **Nuxt 3.21.11** (Vue 3, SSR/ISR) + **Tailwind CSS** + **Pinia** + **Lucide Icons** |
+| **管理后台 Admin** | **Nuxt 3.21.11** (Vue 3) + **Tailwind CSS** + 自定义 i18n 中英双语 |
+| **后端 API 服务** | **FastAPI 0.141.1** (Python 3.11+) + **SQLAlchemy 2.0** + **Pydantic 2** |
+| **异步队列与缓存** | **Celery 5.4+** + **Redis 7** (Broker & Cache) + **Flower** (队列监控) |
+| **数据库** | **PostgreSQL 15+** + **Alembic** 数据库迁移管理 |
+| **对象存储 & CDN** | **Cloudflare R2** / AWS S3 / 阿里云 OSS (兼容 S3 协议) |
+| **部署与容器化** | **Docker Compose** / **systemd** 自动化运维脚本 / Nginx 反向代理 |
 
 ---
 
-## 📁 目录结构
+## 📚 完整开发与部署文档
 
-```
-vidgen/
-├── web/                     # 🌐 前台 Web 应用 (Nuxt 3, 端口 3000)
-│   ├── pages/               # 页面路由 (探索、生成、个人中心、充值等)
-│   ├── components/          # 可复用 Vue 组件
-│   ├── composables/         # 自定义 Composable 钩子
-│   ├── stores/              # Pinia 状态管理
-│   └── nuxt.config.ts       # Nuxt 3 配置文件
-│
-├── admin/                   # 🔧 管理后台应用 (Nuxt 3, 端口 3001)
-│   ├── pages/               # 后台路由 (用户管理、作品管理、审核、模型等)
-│   ├── composables/         # API 与 i18n 钩子 (useAdminI18n.ts)
-│   ├── locales/             # 中英文双语语言包 (en.ts, zh.ts)
-│   └── nuxt.config.ts
-│
-├── backend/                 # 🐍 后端 API 与异步引擎 (FastAPI, 端口 8000)
-│   ├── app/
-│   │   ├── main.py          # FastAPI 主入口与路由注册
-│   │   ├── celery_app.py    # Celery 任务队列配置
-│   │   ├── routes/          # 接口路由 (auth, works, generation, admin*.py)
-│   │   ├── models/          # SQLAlchemy 数据库模型
-│   │   ├── services/        # 存储、邮件、Gemini、审核、支付等核心服务
-│   │   ├── tasks/           # Celery 异步生成任务
-│   │   └── utils/           # i18n、日志、鉴权、 Slug 生成等工具类
-│   ├── migrations/          # Alembic 数据库版本迁移脚本
-│   ├── scripts/             # 系统初始化与日常维护命令行工具
-│   └── requirements.txt     # Python 依赖清单
-│
-├── systemd/                 # ⚙️ 统一服务管理与部署脚本
-│   ├── deploy.sh            # 自动化部署脚本
-│   ├── manage-services.sh   # 交互式 systemd 服务管理器
-│   └── *.service            # systemd 服务配置文件
-│
-└── docs/                    # 📚 技术开发与部署文档
-    ├── 01-getting-started/  # 环境配置与本地开发指南
-    ├── 02-architecture/     # 架构设计与工作流引擎
-    ├── 03-subsystems/        # 前后端子系统与数据库 Schema
-    ├── 04-integrations/     # 支付网关、存储与 AI 服务集成
-    ├── 05-deployment/       # Docker、systemd 与生产部署
-    └── 06-governance/       # 贡献指南与安全规范
-```
+想要深入定制或进行生产环境部署？请查阅我们的详细文档库：
+
+- 🚀 **快速上手**：
+  - [本地开发环境搭建指南](docs/01-getting-started/local-development.md)
+  - [环境变量完整配置清单](docs/01-getting-started/environment-variables.md)
+- 🏗️ **架构与系统**：
+  - [系统架构与全景图](docs/02-architecture/system-overview.md)
+  - [工作流引擎与节点设计](docs/02-architecture/workflow-engine.md)
+  - [积分经济与定价模型](docs/02-architecture/credit-economics.md)
+  - [数据库 Schema 字典](docs/03-subsystems/database-schema.md)
+- 🔌 **第三方集成**：
+  - [支付网关接入指南 (PayPal & Stripe)](docs/04-integrations/payment-gateways.md)
+  - [Cloudflare R2 存储配置](docs/04-integrations/object-storage.md)
+  - [AI 模型 Provider 扩展教程](docs/04-integrations/provider-extension-guide.md)
+- 🚢 **生产部署与运维**：
+  - [生产环境 Docker 部署标准](docs/05-deployment/docker-deployment.md)
+  - [Linux systemd 生产部署指南](docs/05-deployment/production-deployment.md)
 
 ---
 
-## ⚡ 快速启动指南
+## 🔐 生产环境 Docker 快速部署
 
-### 🐳 方式一：一键 Docker Compose 启动（推荐）
-
-通过单条命令即可一键构建并启动全套 VidGen 服务（前端 Web、管理后台 Admin、FastAPI 后端 API、Celery Worker 异步任务、PostgreSQL 数据库及 Redis）：
+若将 VidGen 部署于生产服务器，请使用 `docker-compose.prod.yml` 并准备独立的 `.env.production` 环境变量：
 
 ```bash
-# 克隆项目仓库
-git clone https://github.com/ucmao/vidgen.git
-cd vidgen
-
-# 启动 Docker Compose 全部 6 个服务
-docker compose up -d
-```
-> 💡 *提示：去掉 `-d` 参数或运行 `docker compose logs -f backend` 可查看实时启动日志与 API 配置清单。*
-
-- 🌐 **Web 前端**: `http://localhost:3000`
-- 🔧 **Admin 管理后台**: `http://localhost:3001`（账号为 `admin`；未设置 `INITIAL_ADMIN_PASSWORD` 时，首次启动日志会输出随机生成的本地密码）
-- 🐍 **后端 API 文档 (Swagger UI)**: `http://localhost:8000/docs`
-
-> 💡 **本地初始化**：容器启动时会自动运行 `scripts/seed_all.py`，完成数据库迁移、超级管理员创建和 Demo 数据导入。开发 Compose 的公开端口只绑定 `127.0.0.1`，禁止直接暴露到公网。
-
-> [!IMPORTANT]
-> **第三方服务配置清单 (External Services Checklist)**：  
-> Docker 一键启动会自动装载全套本地基础设施、数据库表、前后台界面与精选 Demo 数据。若需接入真实的第三方服务，请在 `backend/.env` 中配置：
-> - **AI 生成 API**：配置 `REPLICATE_API_KEY`（零成本测试可保持 `MOCK_AI_GENERATION=true`）。
-> - **支付网关**：配置 `PAYPAL_CLIENT_ID` 与 `PAYPAL_CLIENT_SECRET`。
-> - **邮件验证**：配置 `SMTP_HOST` 与 `SMTP_PORT`。本地无 SMTP 测试时需显式设置 `RETURN_VERIFICATION_CODES=true`；生产环境会忽略该开关。
-> - **Google 快捷登录**：配置 `GOOGLE_CLIENT_ID` 与 `GOOGLE_CLIENT_SECRET`。
-
----
-
-### 🔐 生产环境 Docker 基线
-
-不要把开发 Compose 直接部署到公网。生产配置会强制提供安全凭据、关闭验证码回传、跳过 Demo 数据导入，并将应用端口绑定到本机以供 TLS 反向代理使用：
-
-```bash
-# 将以下变量及第三方集成凭据保存到不提交 Git 的 .env.production 中。
-POSTGRES_PASSWORD='请替换为高强度数据库密码'
-JWT_SECRET='请替换为至少-32-位随机字符串'
-CONFIG_ENCRYPTION_KEY='请替换为独立的随机密钥'
-INITIAL_ADMIN_EMAIL='admin@example.com'
-INITIAL_ADMIN_PASSWORD='请替换为高强度管理员密码'
-BACKEND_URL='https://api.example.com'
-FRONTEND_URL='https://example.com'
-ADMIN_FRONTEND_URL='https://admin.example.com'
-WEBSOCKET_URL='wss://api.example.com'
-
+# 生成高强度密码与密钥并写入 .env.production 后运行：
 docker compose --env-file .env.production -f docker-compose.prod.yml up -d
 ```
-
-请在反向代理终止 HTTPS，并确保后端端口不对不受信任的网络开放。生产限流必须使用 Redis。
-
----
-
-### 🛠️ 方式二：本地手动安装部署
-
-#### 环境准备
-- **Python**: 3.11 或更高版本
-- **Node.js**: 24.15 或更高版本
-- **PostgreSQL**: 15.x 或更高版本
-- **Redis**: 7.x 或更高版本
-
----
-
-### 1. 启动后端 API (端口 8000)
-
-```bash
-# 进入后端目录
-cd backend
-
-# 创建并激活 Python 虚拟环境
-python3 -m venv venv
-source venv/bin/activate  # Windows 环境: venv\Scripts\activate
-
-# 安装依赖
-pip install -r requirements.txt
-
-# 创建环境配置文件
-cp .env.example .env
-# 编辑 backend/.env，配置数据库、Redis、R2 秘钥及 AI API Keys
-```
-
-#### 初始化数据库与基础数据
-
-```bash
-# 可选：先设置初始管理员；未设置时会生成随机本地密码
-export INITIAL_ADMIN_USERNAME=admin
-export INITIAL_ADMIN_PASSWORD=请替换为安全密码
-
-# 一次完成迁移、管理员创建及完整 Demo 数据导入
-python scripts/seed_all.py
-```
-
-该命令可重复执行。初始化失败时会以非零状态退出，不会继续执行后续步骤。
-
-> 💡 **提示**：运行 `python scripts/seed_all.py` 会安全地应用数据库迁移、创建初始管理员并导入基础演示数据。如需了解高级数据导入选项，请参考 [docs/01-getting-started/quickstart.md](docs/01-getting-started/quickstart.md)。
-
-#### 启动 FastAPI 服务
-
-```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
-- **API 交互文档 (Swagger UI)**: `http://localhost:8000/docs`
-
----
-
-### 2. 启动 Celery 异步任务队列
-
-```bash
-cd backend
-source venv/bin/activate
-
-# 启动 Celery Worker 监听图片与视频异步生成任务
-celery -A app.celery_app worker --loglevel=info -c 4
-```
-
----
-
-### 3. 启动前台 Web 应用 (端口 3000)
-
-```bash
-cd web
-
-# 安装依赖
-npm install
-
-# 创建配置文件
-cp .env.example .env
-# 编辑 web/.env，确保 NUXT_PUBLIC_API_BASE_URL 指向 http://localhost:8000
-
-# 启动开发服务器
-npm run dev
-```
-- **前台 Web 应用**: `http://localhost:3000`
-
----
-
-### 4. 启动管理后台 Admin (端口 3001)
-
-```bash
-cd admin
-
-# 安装依赖
-npm install
-
-# 启动开发服务器
-npm run dev
-```
-- **管理后台**: `http://localhost:3001`
-- **默认管理员**: 通过 `python scripts/create_first_admin.py` 创建
-
----
-
-## 🚢 生产环境部署与运维
-
-VidGen 提供了开箱即用的 **systemd 统一服务管理器** (`systemd/`):
-
-```bash
-# 运行交互式运维脚本
-chmod +x systemd/manage-services.sh
-./systemd/manage-services.sh
-```
-
-常用命令：
-- **`manage-services.sh status`**：查看 Web、Admin、Backend API 和 Celery 实时运行状态。
-- **`manage-services.sh start`**：一键启动所有后台服务。
-- **`manage-services.sh restart`**：平滑重启所有服务。
-- **`deploy.sh`**：一键生产部署与拉取更新脚本。
-
-关于详细的 Nginx 配置与宝塔/aaPanel 面板部署教程，请参阅文档：[docs/05-deployment/production-deployment.md](docs/05-deployment/production-deployment.md)。
-
----
-
-## 🛠️ CLI 运维工具
-
-`backend/scripts/` 目录下提供了丰富的后台管理命令行工具：
-
-```bash
-# 为指定账户手动充值积分
-python scripts/add_credits.py --email user@example.com --amount 1000
-
-# 重新应用当前唯一的配置与 Demo 数据集
-python scripts/seed_all.py
-
-# 补全历史作品的标签与 URL Slug
-python scripts/update_url_slugs_from_titles.py
-```
+> 详细生产安全与 Nginx TLS 配置，请阅读 [生产部署文档](docs/05-deployment/production-deployment.md)。
 
 ---
 
 ## 📄 开源许可证
 
-本项目基于 **MIT License** 协议开源。详见 [LICENSE](LICENSE) 文件。
+本项目基于 [MIT License](LICENSE) 协议开源，允许自由用于个人研究及商业用途。
 
 ---
 
-## 🤝 贡献与社区
+## 🤝 贡献与支持
 
-欢迎提交 Issue 或 Pull Request 来完善项目！  
-如果 VidGen 对您的项目有所帮助，欢迎在 GitHub 上点个 ⭐️ **Star** 支持一下！
+- 欢迎提交 [Issue](https://github.com/ucmao/vidgen/issues) 反馈 Bug 或提出功能建议。
+- 欢迎提交 Pull Request 共同完善项目！
+- 如果 VidGen 对您的项目有所帮助，欢迎在 GitHub 上点个 ⭐️ **Star** 支持作者！
