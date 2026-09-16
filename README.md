@@ -2,8 +2,7 @@
 
 <img src="docs/assets/logo.png" alt="VidGen Logo" width="320" style="border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
 
-# 🎬 VidGen
-**Out-of-the-box, High-Performance Full-Stack Open-Source AI Video & Image Generation Platform**
+<p><b>Out-of-the-box, High-Performance Full-Stack Open-Source AI Video & Image Generation Platform</b></p>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)

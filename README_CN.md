@@ -2,8 +2,7 @@
 
 <img src="docs/assets/logo.png" alt="VidGen Logo" width="320" style="border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
 
-# 🎬 VidGen
-**开箱即用、高性能的全栈开源 AI 视频与图像生成平台**
+<p><b>开箱即用、高性能的全栈开源 AI 视频与图像生成平台</b></p>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
