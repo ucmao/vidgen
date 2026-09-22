@@ -15,7 +15,7 @@ from .utils.responses import error_response
 load_dotenv()
 
 # Import routes
-from .routes import auth, user, upload, generation, webhook, works, payment, admin, comments, blog, admin_auth, media, follows, topic, seo, admin_seo, admin_works, admin_users, admin_comments, admin_finance, admin_recharge_discount, admin_system, admin_sockpuppets, recharge, notifications, admin_category_pages, admin_effects_pages, admin_moderation, admin_workflows, checkin, invitation, admin_promotions, promotions, admin_carousel, carousel, admin_generate_pages, overseas_parser
+from .routes import auth, user, upload, generation, webhook, works, payment, admin, comments, blog, admin_auth, media, follows, topic, seo, admin_seo, admin_works, admin_users, admin_comments, admin_finance, admin_recharge_discount, admin_system, admin_sockpuppets, recharge, notifications, admin_category_pages, admin_effects_pages, admin_moderation, admin_workflows, checkin, invitation, admin_promotions, promotions, admin_carousel, carousel, admin_generate_pages
 from fastapi.staticfiles import StaticFiles
 
 
@@ -215,7 +215,6 @@ app.include_router(generation.router, prefix="/api/generate", tags=["Generation"
 app.include_router(webhook.router, prefix="/api/webhook", tags=["Webhook"])
 app.include_router(works.router, prefix="/api/works", tags=["Works"])
 app.include_router(payment.router, prefix="/api/payment", tags=["Payment"])
-app.include_router(overseas_parser.router, prefix="/api/overseas", tags=["Overseas Parser"])
 
 app.include_router(admin_auth.router, prefix="/api/admin/auth", tags=["Admin Auth"])
 app.include_router(admin.router, prefix="/api/admin", tags=["Admin"])

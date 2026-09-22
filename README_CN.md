@@ -55,9 +55,9 @@ docker compose up -d
 
 | 服务 | 访问地址 | 默认账号 / 说明 |
 | :--- | :--- | :--- |
-| 🌐 **用户端前台** | `http://localhost:3000` | 已预装演示数据与 Mock 生成引擎，直接体验 |
-| 🔧 **管理后台 (Admin)** | `http://localhost:3001` | 用户名：`admin`（密码见首次启动终端日志，或配置 `INITIAL_ADMIN_PASSWORD`） |
-| 🐍 **API 交互文档** | `http://localhost:8000/docs` | Swagger 交互式接口文档与调试 |
+| **用户端前台** | `http://localhost:3000` | 已预装演示数据与 Mock 生成引擎，直接体验 |
+| **管理后台** | `http://localhost:3001` | 用户名：`admin`（密码见首次启动终端日志，或配置 `INITIAL_ADMIN_PASSWORD`） |
+| **API交互文档** | `http://localhost:8000/docs` | Swagger 交互式接口文档与调试 |
 
 > 💡 **小白贴士**：
 > - 想要查看运行状态与实时日志？运行 `docker compose logs -f backend`。

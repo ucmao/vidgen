@@ -55,9 +55,9 @@ Once started, open your browser:
 
 | Service | URL | Default Credentials / Note |
 | :--- | :--- | :--- |
-| 🌐 **User Web Portal** | `http://localhost:3000` | Preloaded with demo data & Mock AI engine for instant testing |
-| 🔧 **Admin Panel** | `http://localhost:3001` | Username: `admin` (check terminal logs for the generated password, or set `INITIAL_ADMIN_PASSWORD`) |
-| 🐍 **Interactive API Docs** | `http://localhost:8000/docs` | Swagger UI documentation & testing |
+| **User Web Portal** | `http://localhost:3000` | Preloaded with demo data & Mock AI engine for instant testing |
+| **Admin Panel** | `http://localhost:3001` | Username: `admin` (check terminal logs for the generated password, or set `INITIAL_ADMIN_PASSWORD`) |
+| **Interactive API Docs** | `http://localhost:8000/docs` | Swagger UI documentation & testing |
 
 > 💡 **Quick Tips**:
 > - View real-time startup logs: `docker compose logs -f backend`.

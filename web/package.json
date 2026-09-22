@@ -31,8 +31,7 @@
     "nuxt": "^3.21.11",
     "pinia": "^2.1.7",
     "vue": "^3.4.15",
-    "vue-router": "^4.2.5",
-    "vue-toastification": "^2.0.0-rc.5"
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^1.17.0",

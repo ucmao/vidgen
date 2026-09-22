@@ -124,10 +124,6 @@ export default defineNuxtConfig({
     typeCheck: false
   },
 
-  // Build configuration
-  build: {
-    transpile: ['vue-toastification']
-  },
 
   // Nitro configuration (server)
   nitro: {
